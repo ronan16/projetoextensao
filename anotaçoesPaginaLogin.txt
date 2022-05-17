@@ -1,0 +1,84 @@
+mudar nome arquivo= controllerFuncionario = controllerUsuario 
+
+linha 10 = substituir por funcionarios
+
+linha 16 = substituir caminho do header
+
+linha 27 = usuario
+linha 28 = nome, senha, mantém cpf ( data)
+
+exluir linha = 32 e 34
+
+if cpf = remover (remover chaves)
+
+linha 57 = mudar caminho header
+linha 62, 63, 65 = mudar nomes
+
+linha 66 = mudar caminho
+
+linha 69 = correção de nome
+
+linha 70 = mudar caminho
+
+linha 79 e 82 = correção de nome (deleteFunc)
+
+linha 84 = correção de caminho
+
+linha 90, 91, 92 e 94 = correção de nome
+
+linha 95 = correção de caminho
+
+lioha 99 = correção de caminho
+
+linhab 105 à 109 = correção de nome
+
+110 = correção de caminho
+
+113 = correção nome
+114 correção de caminho
+
+123 = correção de nome
+
+linha 125 = deletar (sem data nasc)
+
+128 e 130 = correção de nome
+
+132 = correção nome
+133 = correção caminho
+
+136= correção nome
+137 = correção caminho
+
+150 = possivel correção de caminho
+
+---------------------------------------------------------------------------------
+
+criar pagina de cadastro usuário (cadUsuário)
+
+linha 6 = correção nome
+
+29 = correção nome
+
+linha 32 = caminho
+
+linha 36 à 41 = excluir
+
+----------------------------------------------------
+
+criar pagina para alterção usuário (editUsuario)
+
+linha 6 = alterção de nome
+
+linha 39 = alteração de nome
+
+linha 42 = alterar caminho
+
+linha 48 à 50 = excluir
+
+---------------------------------------------------------
+
+controllerLogin
+
+mudar caminhos e nome de tabelas
+
+--------------------------------------------------------------

@@ -1,3 +1,17 @@
+<?php
+
+	session_start();
+	if(isset($_SESSION['dataCurso']) ){
+
+		$data=$_SESSION['dataCurso'];
+		unset($_SESSION['dataCurso']);
+        
+	}else{
+		header('location:./controllers/controllerIndex.php?acao=principal');
+		exit;
+	}
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -9,8 +23,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     
-    <link rel="stylesheet" href="./css/estilo.css">
-
     <title>Univale Junior</title>
 
   </head>
@@ -28,10 +40,10 @@
   <body style="height: 100vh;font-weight: bold;">
 
     <header class="d-flex flex-row align-items-center" style="background-color:  #002B7B; color: white;">
-        <a href="index.html"><img src="img/logo.png" class="img-fluid" style="width: 150px;"/></a>   
+        <a href="index.php"><img src="img/logo.png" class="img-fluid" style="width: 150px;"/></a>   
         <h1>Júnior<br>Consultoria</h1>
         <div class="w-100 d-flex justify-content-end">
-            <button class="btn btn-light me-3" style="border-radius: 25px;"><i class="bi bi-person-fill"></i> Entrar</button>
+            <button class="btn btn-light me-3" style="border-radius: 25px;"><i class="bi bi-person-fill"></i><a href="views/funcionarios/loginFuncionario.php"> Administrativo </a></button> <!-- ancora pra pagina de login-->
         </div>
     </header>
 
@@ -44,19 +56,19 @@
                 <div class="container px-5 d-flex flex-column align-items-end text-end">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Início</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="nossa_empresa.html">Nossa Empresa</a>
+                            <a class="nav-link" aria-current="page" href="nossa_empresa.php">Nossa Empresa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="servicos.html">Serviços Realizados</a>
+                            <a class="nav-link" href="servicos.php">Serviços Realizados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="agendamento.html">Agendamento</a>
+                            <a class="nav-link" href="agendamento.php">Agendamento</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contatos.html">Contato</a>
+                            <a class="nav-link" href="contatos.php">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +90,7 @@
                             <p style="text-align: center;">Opção de Consultoria para pequenos e grandes empresários</p>
                             <p style="text-align: center;">Aqui você encontra as melhores opções de consultoria para sua empresa</p>
                             <p style="text-align: center;">Venha nos fazer uma visita pessoalmente e converse com a nossa equipe</p>
-                            <a class="btn btn-warning" href="./agendamento.html" >Realize seu agendamento já!</a>
+                            <a class="btn btn-warning" href="./agendamento.php" >Realize seu agendamento já!</a>
                         </div>
                     </div>
                 </div>
@@ -87,36 +99,32 @@
            
     
             <div class="row mt-5 text-center">
-                 <div class="col-lg-4 p-3" >
+            <?php foreach ($data as $value) {
+	        	extract($value); 
+	        ?>
+            
+                <div class="col-lg-4 p-3" >
                      <div class="card">
-                        <a href="#"><img src="IMG/admiB.png" class="img-fluid img70" alt="Administração"></a>
+                        <a href="./servicos.php#<?= $nome_curso; ?>"><img src="img/<?= $imagem; ?>" class="img-fluid img70" 
+                        	style="width: 60%;height: 60%;"></a>
                         <div class="card-body">
-                            <p class="card-text" style="text-align: center;">ADMINISTRAÇÃO</p>
+                            <p class="card-text" style="text-align: center;"><?= $nome_curso; ?></p>
                         </div>
                      </div>                
                 </div>
-                 <div class="col-lg-4 p-3 ">
-                     <div class="card">
-                        <a href="#"><img src="IMG/adsB.png" class=" img-fluid img70" alt="Análise e desenvolvimento de Sistemas"></a>
-                        <div class="card-body">
-                            <p class="card-text" style="text-align: center;">ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
-                        </div>
-                     </div>
-                    
-                </div>
-                 <div class=" col-lg-4 p-3">
-                    <div class="card">
-                        <a href="#"><img src="IMG/contabB.png" class=" img-fluid img70" alt="Ciências Contábeis"></a>
-                        <div class="card-body">
-                            <p class="card-text" style="text-align: center;">CIÊNCIAS CONTÁBEIS</p>
-                        </div>
-                    </div>
-                     
+            <?php } ?>
+                
                 </div>
             </div>
-            <div class="row text-center ">
+            
+        </div>
+       
+        <div class="row text-center ">
                 <div class="col">
-                    <h3> Vídeo institucional</h3>
+                	<div>
+						<h3> Vídeo institucional</h3>
+                	</div>
+                    
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/1mx71hkteII" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -124,21 +132,33 @@
                 </iframe>    
                 </div>
             </div>
-        </div>
-       
-        
     <footer style="background-color:  #002B7B; color: white;" >
         <div class="row mt-5">
             <div class="col-3 px-5">
                 <h5> Cursos Afiliados</h5>
+
                 <ul style="list-style: none;">
-                    <a href="#"style="text-decoration: none; color: white;"><li>Administração</li></a>
-                    <a href="#"style="text-decoration: none; color: white;"><li>Análise de Sistemas</li></a>
+                
+                <?php foreach ($data as $value) {
+		          extract($value); 
+	             ?>
+                    
+                    <a href="./servicos.php#<?= $nome_curso; ?>"style="text-decoration: none; color: white;"><li><?= $nome_curso; ?></li></a>
+                    <!-- <a href="#"style="text-decoration: none; color: white;"><li>Análise de Sistemas</li></a>
                     <a href="#"style="text-decoration: none; color: white;"><li>Contabilidade</li></a>
                     <a href="#"style="text-decoration: none; color: white;"><li>Curso X</li></a>
-                    <a href="#"style="text-decoration: none; color: white;"><li>Curso X</li></a>
-                </ul>       
-            </div>
+                    <a href="#"style="text-decoration: none; color: white;"><li>Curso X</li></a> -->
+                    
+               
+
+                <?php  
+                 }
+                 ?> 
+                
+                </ul> 
+            </div
+            
+            >
             <div class="col-3 px-5">
                 <h5> Entre em contato</h5>
                 <ul style="list-style: none;" >

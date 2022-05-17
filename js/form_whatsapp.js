@@ -7,7 +7,7 @@ document.querySelector('#ag_enviar').addEventListener('click',function(){
  let cidade = document.querySelector('#ag_cidade').value;
  let assunto = document.querySelector('#ag_assunto').value;
  
-let url = ("https://api.whatsapp.com/send?phone=5543996922801&text="+
+let url = ("https://api.whatsapp.com/send?phone=5543900000000&text="+
 			"Gostaria de realizar um agendamento com a Empresa Junior."+
 			"%0A Meu nome: " +nome + 
 			"%0A Meu telefone pra contato : "+ fone +

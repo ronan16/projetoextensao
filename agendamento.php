@@ -1,3 +1,17 @@
+<?php
+
+	session_start();
+	if(isset($_SESSION['dataCurso']) ){
+
+		$data=$_SESSION['dataCurso'];
+		unset($_SESSION['dataCurso']);
+        
+	}else{
+		header('location:./controllers/controllerIndex.php?acao=agendamentos');
+		exit;
+	}
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -13,10 +27,10 @@
   </head>
   <body style="height: 100vh; font-weight: bold;">
     <header class="d-flex flex-row align-items-center" style="background-color:  #002B7B; color: white;">
-        <a href="index.html"><img src="img/logo.png" class="img-fluid" style="width: 150px;"/></a>   
+        <a href="index.php"><img src="img/logo.png" class="img-fluid" style="width: 150px;"/></a>   
         <h1>Junior<br>Consultoria</h1>
         <div class="w-100 d-flex justify-content-end">
-            <button class="btn btn-light me-3" style="border-radius: 25px;"><i class="bi bi-person-fill"></i> Entrar</button>
+            <button class="btn btn-light me-3" style="border-radius: 25px;"><i class="bi bi-person-fill"></i><a href="views/funcionarios/loginFuncionario.php"> Administrativo </a></button>
         </div>
     </header>
 
@@ -29,19 +43,19 @@
                 <div class="container px-5 d-flex flex-column align-items-end text-end">
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="index.html">Início</a>
+                            <a class="nav-link" aria-current="page" href="index.php">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="nossa_empresa.html">Nossa Empresa</a>
+                            <a class="nav-link" aria-current="page" href="nossa_empresa.php">Nossa Empresa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="servicos.html">Serviços Realizados</a>
+                            <a class="nav-link" href="servicos.php">Serviços Realizados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="agendamento.html">Agendamento</a>
+                            <a class="nav-link" href="agendamento.php">Agendamento</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contatos.html">Contato</a>
+                            <a class="nav-link" href="contatos.php">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -69,8 +83,8 @@
             <div class="mt-5 mb-5 d-grid gap-2 col-6 mx-auto">
                 <div class="mb-3">
                     <label for="ag_nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="ag_nome" aria-describedby="emailHelp"style="border-style:solid;border-color:#002B7B;">
-                    <div id="emailHelp" class="form-text">Descrição 1</div>
+                    <input type="text" class="form-control" id="ag_nome" aria-describedby="emailHelp"style="border-style:solid;border-color:#002B7B;" placeholder="Digite seu nome completo">
+                    <div id="emailHelp" class="form-text">Digite seu nome completo</div>
                 </div>
                 
                 <div class="row">
@@ -83,7 +97,7 @@
                             <label for="ag_fone" class="form-label">Fone: </label>
                             <input type="text" class="form-control" id="ag_fone" aria-describedby="emailHelp"
                             style="border-style:solid;border-color:#002B7B;">
-                            <div id="emailHelp" class="form-text">Descrição 3</div>
+                            <div id="emailHelp" class="form-text">Digite seu DDD + Numero</div>
                         </div>
                 </div>
                     <div class="col-6">
@@ -91,14 +105,14 @@
                             <label for="ag_cidade" class="form-label">Cidade:</label>
                             <input type="text" class="form-control" id="ag_cidade" aria-describedby="emailHelp"
                             style="border-style:solid;border-color:#002B7B;">
-                            <div id="emailHelp" class="form-text">Descrição 4</div>
+                            <div id="emailHelp" class="form-text">Digite o nome de sua Cidade</div>
                         </div>
                     </div>
                 </div>
                
                 <div class="mb-3">
                     <label for="ag_assunto" class="form-label">Assunto: </label>
-                    <textarea class="form-control" id="ag_assunto" rows="3"style="border-style:solid;border-color:#002B7B;"></textarea>
+                    <textarea class="form-control" id="ag_assunto" rows="3"style="border-style:solid;border-color:#002B7B;" placeholder="Descreva o assunto a ser tratado"></textarea>
                 </div>
                 <button id="ag_enviar" class="btn btn-warning">Enviar</button>
             </div>   
@@ -109,12 +123,25 @@
             <div class="col-3 px-5">
                 <h5> Cursos Afiliados</h5>
                 <ul style="list-style: none;">
-                    <a href="#"style="text-decoration: none; color: white;"><li>Administração</li></a>
-                    <a href="#"style="text-decoration: none; color: white;"><li>Análise de Sistemas</li></a>
+
+                <?php foreach ($data as $value) {
+		          extract($value); 
+	             ?>
+                
+                    <a href="#"style="text-decoration: none; color: white;"><li> <?= $nome_curso; ?> </li></a>
+                    <!-- <a href="#"style="text-decoration: none; color: white;"><li>Análise de Sistemas</li></a>
                     <a href="#"style="text-decoration: none; color: white;"><li>Contabilidade</li></a>
                     <a href="#"style="text-decoration: none; color: white;"><li>Curso X</li></a>
-                    <a href="#"style="text-decoration: none; color: white;"><li>Curso X</li></a>
-                </ul>       
+                    <a href="#"style="text-decoration: none; color: white;"><li>Curso X</li></a> -->
+                    
+                </ul> 
+
+                <?php  
+                 }
+                 ?> 
+                
+                
+
             </div>
             <div class="col-3 px-5">
                 <h5> Entre em contato</h5>
